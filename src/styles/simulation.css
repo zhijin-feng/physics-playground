@@ -1,42 +1,94 @@
-/* src/styles/simulation.css */
-
-.simulation-page {
+/* 页面布局 */
+.sim-page-layout {
     display: flex;
-    flex-direction: column;
     min-height: 100vh;
     background-color: #1a1a1a;
     color: white;
     font-family: 'Segoe UI', sans-serif;
 }
 
-.simulation-header {
+/* 左侧导航栏 */
+.sim-sidebar {
+    width: 220px;
+    background-color: #1e1e1e;
+    padding: 1.5rem 1rem;
+    border-right: 1px solid #333;
+    margin-top: 60px;  /* 修改: 将导航栏整体下移 */
+}
+
+.sim-sidebar-title {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #f0f0f0;
+}
+
+.sim-nav-button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    background-color: #2a2a2a;
+    border: none;
+    border-radius: 8px;
+    color: #ddd;
+    text-align: left;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sim-nav-button:hover {
+    background-color: #3a3a3a;
+    color: white;
+}
+
+.sim-nav-button.active {
+    background-color: #4e80ff;
+    color: white;
+}
+
+/* 主内容区 */
+.sim-main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.sim-header {
     display: flex;
     align-items: center;
     padding: 1rem 2rem;
     background-color: #222;
     border-bottom: 1px solid #333;
+    justify-content: space-between;
+
 }
 
-.back-button {
+/* 固定在左上角的Back to Home链接 */
+.sim-back-link {
+    position: fixed; /* 修改: 使链接固定在页面左上角 */
+    top: 20px; /* 修改: 距离顶部20px */
+    left: 20px; /* 修改: 距离左边20px */
     color: #1e88e5;
     text-decoration: none;
     font-size: 1rem;
-    margin-right: 1rem;
+    font-weight: bold;
+    z-index: 1000; /* 修改: 确保它在最上层 */
 }
 
-.simulation-title {
+.sim-title {
     font-size: 1.5rem;
     font-weight: 600;
 }
 
-.simulation-main {
+.sim-main-area {
     flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.simulation-canvas {
+.sim-canvas-container {
     width: 80%;
     height: 70vh;
     background-color: #000;
@@ -48,7 +100,7 @@
     align-items: center;
 }
 
-.placeholder-text {
+.sim-placeholder-text {
     color: #888;
     font-size: 1rem;
 }

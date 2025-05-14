@@ -1,21 +1,55 @@
-import { useState } from 'react';
-import GravitySimulation from '../components/simulations/GravitySimulation';
+// src/pages/Simulation.jsx
 
-function SimulationPage() {
-    const [activeSim, setActiveSim] = useState('gravity');
+import React, { useState } from 'react';
+import GravitySimulation from '../components/simulations/GravitySimulation.jsx';
+import '../styles/simulation.css'; // 引入样式文件
+
+const Simulation = () => {
+    // 用于记录当前选中的模拟
+    const [activeSimulation, setActiveSimulation] = useState('gravity');
 
     return (
-        <div style={{ display: 'flex', height: '100vh' }}>
-            <div style={{ width: '200px', backgroundColor: '#1e1e1e', padding: '1rem' }}>
-                <h2 style={{ color: 'white' }}>Simulations</h2>
-                <button onClick={() => setActiveSim('gravity')}>Gravity Simulation</button>
+        <div className="sim-page-layout">
+            {/* 左侧导航栏 */}
+            <div className="sim-sidebar">
+                <div className="sim-sidebar-title">Simulations</div>
+
+                {/* 模拟按钮 */}
+                <button
+                    className={`sim-nav-button ${activeSimulation === 'gravity' ? 'active' : ''}`}
+                    onClick={() => setActiveSimulation('gravity')}
+                >
+                    Gravity Simulation
+                </button>
+
+                <button
+                    className={`sim-nav-button ${activeSimulation === 'collision' ? 'active' : ''}`}
+                    onClick={() => setActiveSimulation('collision')}
+                >
+                    Collision Simulation
+                </button>
+
+                {/* 你可以继续添加更多模拟页面的按钮 */}
             </div>
 
-            <div style={{ flexGrow: 1, padding: '1rem' }}>
-                {activeSim === 'gravity' && <GravitySimulation />}
+            {/* 主内容区 */}
+            <div className="sim-main-content">
+                <div className="sim-header">
+                    <a href="/" className="sim-back-link">Back to Home</a>
+                    <h1 className="sim-title">Simulation Page</h1>
+                </div>
+
+                <div className="sim-main-area">
+                    {/* 根据选中的模拟显示不同的内容 */}
+                    {activeSimulation === 'gravity' && <GravitySimulation />}
+                    {/* 你可以在这里添加其他模拟组件，如 CollisionSimulation */}
+                </div>
             </div>
+
+            {/* 固定在左上角的返回链接 */}
+            <a href="/" className="sim-back-link">Back to Home</a> {/* 修改: 将链接放置在左上角 */}
         </div>
     );
-}
+};
 
-export default SimulationPage;
+export default Simulation;
