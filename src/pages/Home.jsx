@@ -6,9 +6,9 @@ function Home() {
     return (
         <div className="home-container">
             <h1 className="home-title">Physics Playground</h1>
-            <p className="home-subtitle">打造属于你的物理模拟实验室</p>
+            <p className="home-subtitle">Your own physics lab</p>
             <Link to="/simulation">
-                <button className="home-button">进入模拟页面</button>
+                <button className="home-button">Start Simulation</button>
             </Link>
         </div>
     );
