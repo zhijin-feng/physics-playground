@@ -12,3 +12,4 @@ createRoot(document.getElementById('root')).render(
     </StrictMode>,
 );
 
+// console.log('OpenAI API Key:', import.meta.env.VITE_OPENAI_API_KEY ? '✅ Loaded' : '❌ Missing'); 测试openAI key是否配置成功;
