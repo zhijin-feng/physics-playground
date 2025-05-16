@@ -7,6 +7,8 @@ function CollisionSimulation() {
     const [lastClickPos, setLastClickPos] = useState(null);
     const [vxInput, setVxInput] = useState('');
     const [vyInput, setVyInput] = useState('');
+    const [renderTrigger, setRenderTrigger] = useState(0);
+
 
 
     useEffect(() => {
