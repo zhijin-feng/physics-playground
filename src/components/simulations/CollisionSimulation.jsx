@@ -8,6 +8,7 @@ function CollisionSimulation() {
     const [vxInput, setVxInput] = useState('');
     const [vyInput, setVyInput] = useState('');
 
+
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
@@ -51,12 +52,21 @@ function CollisionSimulation() {
     }, []);
 
     // 点击画布添加小球
+    const MAX_BALLS = 10;
+
     const handleCanvasClick = (e) => {
+        if (ballsRef.current.length >= MAX_BALLS) {
+            alert(`Too many balls! Limit is ${MAX_BALLS}.`);
+            return;
+        }
+
         const rect = canvasRef.current.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
         const clickY = e.clientY - rect.top;
 
+        // ✅ 把小球加入 ballsRef.current
         ballsRef.current.push({ x: clickX, y: clickY, vx: 0, vy: 0 });
+
         setLastClickPos({ x: clickX, y: clickY });
     };
 
