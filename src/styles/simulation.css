@@ -104,3 +104,74 @@
     color: #888;
     font-size: 1rem;
 }
+
+
+.sim-ai-answer-panel {
+    width: 400px;               /* 固定宽度 */
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    border-radius: 10px;
+    padding: 1rem;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: auto;           /* 允许纵向滚动 */
+    overflow-x: hidden;         /* 禁止横向滚动 */
+
+    box-sizing: border-box;
+
+    white-space: pre-wrap;      /* 保留换行符并自动换行 */
+    word-break: break-word;     /* 断词换行 */
+}
+
+.sim-ai-markdown {
+    flex-grow: 1;
+    color: #f0f0f0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.sim-ai-markdown p,
+.sim-ai-markdown ul,
+.sim-ai-markdown ol,
+.sim-ai-markdown h1,
+.sim-ai-markdown h2,
+.sim-ai-markdown h3,
+.sim-ai-markdown h4,
+.sim-ai-markdown h5,
+.sim-ai-markdown h6 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.sim-ai-markdown pre {
+    background-color: #222;
+    padding: 0.8rem;
+    border-radius: 6px;
+    overflow-x: auto; /* 允许代码块横向滚动 */
+    white-space: pre-wrap; /* 允许代码块换行 */
+    word-break: break-word;
+    max-width: 100%;
+}
+
+.sim-ai-markdown code {
+    background-color: #333;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+.sim-ai-button {
+    margin-bottom: 1rem;
+    background-color: #4e80ff;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+

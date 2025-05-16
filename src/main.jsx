@@ -12,4 +12,4 @@ createRoot(document.getElementById('root')).render(
     </StrictMode>,
 );
 
-console.log('DEEPSEEK API Key:', import.meta.env.VITE_DEEPSEEK_API_KEY ? '✅ Loaded' : '❌ Missing'); //测试openAI key是否配置成功;
+//console.log('DEEPSEEK API Key:', import.meta.env.VITE_DEEPSEEK_API_KEY ? '✅ Loaded' : '❌ Missing'); //测试openAI key是否配置成功;
