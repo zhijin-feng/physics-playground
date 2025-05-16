@@ -134,6 +134,16 @@ function CollisionSimulation() {
         }
     };
 
+    // 删除最后一个小球
+    const handleDeleteLastBall = () => {
+        if (ballsRef.current.length === 0) {
+            alert('No balls to delete!');
+            return;
+        }
+        ballsRef.current.pop();
+        setRenderTrigger((r) => r + 1);
+    };
+
     return (
         <div style={{ display: 'flex', gap: '1rem', padding: '1rem' }}>
             {/* 画布区域 */}
@@ -184,6 +194,12 @@ function CollisionSimulation() {
                 <button onClick={handleSetVelocity} className="sim-ai-button" style={{ marginTop: '1rem' }}>
                     Set Velocity
                 </button>
+
+                {/* 新增删除按钮 */}
+                <button onClick={handleDeleteLastBall} className="sim-ai-button" style={{ marginTop: '1rem', backgroundColor: '#a33' }}>
+                    Delete Last Ball
+                </button>
+
             </div>
         </div>
     );
