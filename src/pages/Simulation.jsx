@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import GravitySimulation from '../components/simulations/GravitySimulation.jsx';
-import '../styles/simulation.css'; // 引入样式文件
+import '../styles/simulation.css';
+import CollisionSimulation from "../components/simulations/CollisionSimulation.jsx"; // 引入样式文件
 
 const Simulation = () => {
     // 用于记录当前选中的模拟
@@ -43,6 +44,7 @@ const Simulation = () => {
                     {/* 根据选中的模拟显示不同的内容 */}
                     {activeSimulation === 'gravity' && <GravitySimulation />}
                     {/* 你可以在这里添加其他模拟组件，如 CollisionSimulation */}
+                    {activeSimulation === 'collision' && <CollisionSimulation />}
                 </div>
             </div>
 
