@@ -35,6 +35,50 @@ function CollisionSimulation() {
                 }
             });
 
+            // 小球之间的碰撞检测与响应
+            for (let i = 0; i < ballsRef.current.length; i++) {
+                for (let j = i + 1; j < ballsRef.current.length; j++) {
+                    const b1 = ballsRef.current[i];
+                    const b2 = ballsRef.current[j];
+
+                    const dx = b2.x - b1.x;
+                    const dy = b2.y - b1.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const minDist = 20; // 半径为10的两个小球
+
+                    if (dist < minDist) {
+                        // 单位法向量
+                        const nx = dx / dist;
+                        const ny = dy / dist;
+
+                        // 相对速度
+                        const dvx = b1.vx - b2.vx;
+                        const dvy = b1.vy - b2.vy;
+
+                        // 相对速度在法线方向上的分量
+                        const dot = dvx * nx + dvy * ny;
+
+                        if (dot > 0) continue; // 已远离，不反应
+
+                        // 速度更新（简化弹性碰撞，质量相等）
+                        const impulse = dot;
+
+                        b1.vx -= impulse * nx;
+                        b1.vy -= impulse * ny;
+                        b2.vx += impulse * nx;
+                        b2.vy += impulse * ny;
+
+                        // 位置修正：避免两个小球重叠
+                        const overlap = (minDist - dist) / 2;
+                        b1.x -= nx * overlap;
+                        b1.y -= ny * overlap;
+                        b2.x += nx * overlap;
+                        b2.y += ny * overlap;
+                    }
+                }
+            }
+
+
             // 画小球
             ballsRef.current.forEach((ball) => {
                 ctx.beginPath();
