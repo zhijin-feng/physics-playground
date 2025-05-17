@@ -1,59 +1,59 @@
-# React 中函数放置位置指南
+# Guidelines for Function Placement in React
 
 ---
 
-## 1. 什么是 `useEffect`？
+## 1. What is `useEffect`?
 
-`useEffect` 是 React 的 Hook，用来处理“副作用”——即那些对组件外部环境有影响的操作，比如网络请求、订阅事件、手动修改 DOM 等。
-
----
-
-## 2. 函数放在 `useEffect` 里的情况
-
-- **副作用逻辑**
-    - 如订阅、计时器、动画循环、DOM 操作等。
-    - 依赖外部状态，且需要在组件挂载和卸载时执行和清理。
-
-- **组件挂载或卸载时需要执行的代码**
-    - 初始化资源，绑定事件监听
-    - 清理定时器，取消订阅等
-
-- **依赖某些 props 或 state 变化需要执行的代码**
-    - 如某个变量变化时，重新发起网络请求
+`useEffect` is a React Hook used to handle **side effects** — operations that affect the outside world beyond the component itself, such as network requests, event subscriptions, manual DOM manipulations, etc.
 
 ---
 
-## 3. 函数不应放在 `useEffect` 里的情况
+## 2. When to Place Functions Inside `useEffect`
 
-- **事件处理函数**
-    - 按钮点击、输入框变化、画布点击等
-    - 绑定在 JSX 事件中，实时响应用户操作
+- **Side-effect logic**
+  - Such as subscriptions, timers, animation loops, DOM operations, etc.
+  - Depends on external state and needs to run on component mount and cleanup on unmount.
 
-- **纯计算函数**
-    - 根据输入计算结果，没有副作用
-    - 如位置更新、碰撞检测、数据处理等
+- **Code that needs to run on component mount or unmount**
+  - Initialize resources, bind event listeners
+  - Clean up timers, cancel subscriptions
 
-- **状态更新调用**
-    - 调用 `setState` 更新状态的函数不放 `useEffect`，而是事件处理或其他逻辑里调用
-
----
-
-## 4. 具体示例（结合项目）
-
-| 函数/逻辑               | 放置位置       | 说明                              |
-|------------------------|----------------|---------------------------------|
-| 动画循环 `draw`          | `useEffect`     | 依赖 `requestAnimationFrame`，组件挂载时启动，卸载时停止   |
-| 画布点击事件处理 `handleCanvasClick` | 组件函数体外层   | 直接响应用户点击，不是副作用           |
-| 速度设置函数 `handleSetVelocity`       | 组件函数体外层   | 绑定按钮点击事件                      |
-| 小球碰撞检测和位置计算          | `draw` 内部      | 纯计算逻辑，无副作用                  |
-| 删除小球函数 `handleDeleteLastBall`     | 组件函数体外层   | 响应用户事件                        |
+- **Code that depends on certain props or state changes**
+  - For example, refetching data when a specific variable changes
 
 ---
 
-## 5. 小结
+## 3. When NOT to Place Functions Inside `useEffect`
 
-- **副作用相关函数放 `useEffect`**
-- **用户事件处理和纯计算函数放组件函数体里**
-- **状态声明用 `useState`，状态更新调用放事件处理函数**
+- **Event handler functions**
+  - Button clicks, input changes, canvas clicks, etc.
+  - Bound directly in JSX to respond immediately to user actions
+
+- **Pure calculation functions**
+  - Functions that compute results based on input without side effects
+  - Examples: position updates, collision detection, data processing
+
+- **State update calls**
+  - Calls to `setState` should be made inside event handlers or other logic, not inside `useEffect` unless responding to side effects
+
+---
+
+## 4. Concrete Examples (Project Context)
+
+| Function/Logic                      | Placement           | Explanation                                  |
+|-----------------------------------|---------------------|----------------------------------------------|
+| Animation loop `draw`               | Inside `useEffect`  | Depends on `requestAnimationFrame`, starts on mount, stops on unmount |
+| Canvas click handler `handleCanvasClick` | Outside `useEffect`, in component body | Direct user event response, not a side effect |
+| Velocity setter `handleSetVelocity`         | Outside `useEffect`, in component body | Bound to button click event                    |
+| Ball collision and position update          | Inside `draw` function                | Pure calculation logic without side effects    |
+| Delete ball function `handleDeleteLastBall` | Outside `useEffect`, in component body | User interaction handler                        |
+
+---
+
+## 5. Summary
+
+- **Place side-effect-related functions inside `useEffect`**
+- **Place user event handlers and pure calculation functions in the component body**
+- **Declare state with `useState` and update state inside event handlers**
 
 ---

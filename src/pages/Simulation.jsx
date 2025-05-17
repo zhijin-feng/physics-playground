@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import GravitySimulation from '../components/simulations/GravitySimulation.jsx';
 import '../styles/simulation.css';
 import CollisionSimulation from "../components/simulations/CollisionSimulation.jsx";
-import NonNewtonianFluidSimulation from "../components/simulations/NonNewtonianFluidSimulation.jsx"; // 引入样式文件
+import NewtonianFluidSimulation from "../components/simulations/NewtonianFluidSimulation.jsx"; // 引入样式文件
 
 const Simulation = () => {
     // 用于记录当前选中的模拟
@@ -35,7 +35,7 @@ const Simulation = () => {
                     className={`sim-nav-button ${activeSimulation === 'fluid' ? 'active' : ''}`}
                     onClick={() => setActiveSimulation('fluid')}
                 >
-                    Non-Newtonian Simulation
+                    Newtonian Simulation
                 </button>
 
                 {/* 你可以继续添加更多模拟页面的按钮 */}
@@ -53,7 +53,7 @@ const Simulation = () => {
                     {activeSimulation === 'gravity' && <GravitySimulation />}
                     {/* 你可以在这里添加其他模拟组件，如 CollisionSimulation */}
                     {activeSimulation === 'collision' && <CollisionSimulation />}
-                    {activeSimulation === 'fluid' && <NonNewtonianFluidSimulation />}
+                    {activeSimulation === 'fluid' && <NewtonianFluidSimulation />}
                 </div>
             </div>
 
